@@ -16,4 +16,3 @@ Camera interface with FPGA board
 
 3. Supplement information
 - VGA frame size 640x480
-- 
