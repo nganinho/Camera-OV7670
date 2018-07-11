@@ -1,4 +1,4 @@
-# Camera-OV7670
+# Camera OV7670
 ## Camera interface with FPGA board
 
 ### 1. System
