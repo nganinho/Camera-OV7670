@@ -37,13 +37,12 @@
 `define SUSTO       80 // SU:STO 
 
 // reg 
-`define REG_NUM 2
+`define REG_NUM 6
 
 module sccb (
     input  wire clock,
     input  wire reset,
     input  wire start,
-    input  wire [7:0] data,
     output reg sccb_clk,
     output reg sccb_dat
 );
@@ -58,7 +57,28 @@ reg start_;
 // wire
 wire start_det, start_done, dat_done, stop_done, all_reg;
 wire [7:0] address = 8'h42;
-wire [7:0] offset  = 8'h55;
+wire [7:0] offset, data;
+wire [7:0] _offset [5:0]; 
+wire [7:0] _data   [5:0]; 
+
+// offset in configuration
+assign _offset[0] = 8'h33;
+assign _offset[1] = 8'h2d;
+assign _offset[2] = 8'hfa;
+assign _offset[3] = 8'h55;
+assign _offset[4] = 8'haa;
+assign _offset[5] = 8'h7b;
+
+// data in configuration
+assign _data[0] = 8'haa;
+assign _data[1] = 8'hff;
+assign _data[2] = 8'h4a;
+assign _data[3] = 8'h6b;
+assign _data[4] = 8'h99;
+assign _data[5] = 8'hf3;
+assign data   = _data[reg_cnt];
+assign offset = _offset[reg_cnt];
+
 // start detection
 // --------------------------------start
 always @ ( posedge clock ) begin
